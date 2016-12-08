@@ -1,0 +1,16 @@
+{
+  "name": "frontpress-cli",
+  "version": "0.0.0",
+  "description": "CLI tool for FrontPress",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontpressorg/frontpress-cli.git"
+  },
+  "author": "Teles <josetelesmaciel@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frontpressorg/frontpress-cli/issues"
+  },
+  "homepage": "https://github.com/frontpressorg/frontpress-cli#readme"
+}

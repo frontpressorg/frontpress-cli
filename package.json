@@ -31,10 +31,11 @@
   },
   "devDependencies": {
     "ava": "^0.15.2",
-    "xo": "^0.16.0"
+    "xo": "^0.17.1"
   },
   "xo": {
-    "esnext": true
+    "esnext": true,
+    "space": true
   },
   "bugs": {
     "url": "https://github.com/frontpressorg/frontpress-cli/issues"

@@ -2,13 +2,40 @@
   "name": "frontpress-cli",
   "version": "0.0.0",
   "description": "CLI tool for FrontPress",
-  "main": "index.js",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frontpressorg/frontpress-cli.git"
   },
   "author": "Teles <josetelesmaciel@gmail.com>",
-  "license": "MIT",
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=5"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "fronpress",
+    "wordpress",
+    "angular"
+  ],
+  "dependencies": {
+    "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true
+  },
   "bugs": {
     "url": "https://github.com/frontpressorg/frontpress-cli/issues"
   },

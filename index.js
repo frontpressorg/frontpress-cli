@@ -1,11 +1,5 @@
 'use strict';
 
-module.exports = (input, opts) => {
-  if (typeof input !== 'string') {
-    throw new TypeError(`Expected a string, got ${typeof input}`);
-  }
+const spawn = require('child_process').spawn;
 
-  opts = opts || {};
-
-  return input + ' & ' + (opts.postfix || 'more');
-};
+module.exports.new = name => spawn('mkdir', [name]);

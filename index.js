@@ -1,9 +1,12 @@
 'use strict';
 
 const fs = require('fs');
-const spawn = require('child_process').spawn;
+const childProcess = require('child_process');
 const slugify = require('slug');
 const inquirer = require('inquirer');
+
+const spawn = childProcess.spawn;
+const exec = childProcess.exec;
 
 function willReplacePath() {
   const questions = [{
@@ -20,7 +23,7 @@ function createPath(name) {
   return {
     mkdir: spawn('mkdir', [name]),
     touch: spawn('touch', [`${name}/index.html`]),
-    cd: spawn('cd', [name])
+    cd: exec('cd', [name])
   };
 }
 

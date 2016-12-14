@@ -2,7 +2,7 @@
 'use strict';
 
 const program = require('commander');
-const fronpress = require('./');
+const frontpress = require('./');
 
 program
   .version('0.0.0')
@@ -10,5 +10,5 @@ program
   .parse(process.argv);
 
 if (program.new) {
-  fronpress.new(program.new);
+  frontpress.new(program.new);
 }

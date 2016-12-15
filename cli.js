@@ -1,18 +1,14 @@
 #!/usr/bin/env node
 'use strict';
-const meow = require('meow');
-const frontpressCli = require('./');
 
-const cli = meow(`
-  Usage
-    $ frontpress-cli [input]
+const program = require('commander');
+const frontpress = require('./');
 
-  Options
-    --foo  Lorem ipsum [Default: false]
+program
+  .version('0.0.0')
+  .option('-n, --new <name>', 'create a new project')
+  .parse(process.argv);
 
-  Examples
-    $ frontpress-cli
-    Lorem ipsum
-`);
-
-console.log(frontpressCli(cli.input[0] || ''));
+if (program.new) {
+  frontpress.new(program.new);
+}

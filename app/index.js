@@ -4,19 +4,13 @@ const fs = require('fs');
 const childProcess = require('child_process');
 const slugify = require('slug');
 const inquirer = require('inquirer');
+const questions = require('./questions');
 
 const spawn = childProcess.spawn;
 const exec = childProcess.exec;
 
 function willReplacePath() {
-  const questions = [{
-    type: 'confirm',
-    name: 'replace',
-    message: 'You alredy have a project with this name. Replace project?',
-    default: false
-  }];
-
-  return inquirer.prompt(questions);
+  return inquirer.prompt(questions.replace);
 }
 
 function createPath(name) {

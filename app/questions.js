@@ -1,3 +1,10 @@
+module.exports.replace = [{
+  type: 'confirm',
+  name: 'replace',
+  message: 'You alredy have a project with this name. Replace project?',
+  default: false
+}];
+
 module.exports.init = [{
   type: 'input',
   name: 'restApiUrl',

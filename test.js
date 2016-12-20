@@ -21,8 +21,16 @@ test('generate the frontpress.json', async t => {
 
   fn.init(objectTest);
 
-  const dataRead = new Promise((resolve, reject) => {
-    fs.readFile('frontpress.json', 'utf8', (err, data) => {
+  const dataRead = await pReadFileByName('frontpress.json');
+
+  t.is('object', typeof dataRead, '`dataRead` is an object');
+  t.true(Object.prototype.hasOwnProperty.call(dataRead, 'name'), '`dataRead` has the `name` property');
+  t.is(dataRead.name, objectTest.name, '`dataRead.name` and `objectTest.name` are the same');
+});
+
+function pReadFileByName(fileName) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileName, 'utf8', (err, data) => {
       if (err) {
         return reject(err);
       }
@@ -30,10 +38,4 @@ test('generate the frontpress.json', async t => {
       return resolve(JSON.parse(data));
     });
   });
-
-  await dataRead.then(data => {
-    t.is('object', typeof data, '`data` is an object');
-    t.true(Object.prototype.hasOwnProperty.call(data, 'name'), '`data` has the `name` property');
-    t.is(data.name, objectTest.name, '`data.name` and `objectTest.name` are the same');
-  });
-});
+}

@@ -4,19 +4,13 @@ const fs = require('fs');
 const childProcess = require('child_process');
 const slugify = require('slug');
 const inquirer = require('inquirer');
+const questions = require('./questions');
 
 const spawn = childProcess.spawn;
 const exec = childProcess.exec;
 
 function willReplacePath() {
-  const questions = [{
-    type: 'confirm',
-    name: 'replace',
-    message: 'You alredy have a project with this name. Replace project?',
-    default: false
-  }];
-
-  return inquirer.prompt(questions);
+  return inquirer.prompt(questions.replace);
 }
 
 function createPath(name) {
@@ -36,7 +30,7 @@ function newProject(name) {
     fs.exists(name, exists => {
       if (exists) {
         // TODO: improve tests for this.
-        return replace().then(res => res.replace ? resolve(createPath(name + 1)) : reject(false));
+        return replace().then(res => res.replace ? resolve(createPath(name + 1)) : reject(Error(`Couldn't replace the path`)));
       }
 
       return resolve(createPath(name));
@@ -44,4 +38,15 @@ function newProject(name) {
   });
 }
 
+function init(answers) {
+  const content = JSON.stringify(answers, null, 2);
+
+  fs.writeFile('frontpress.json', content, err => {
+    if (err) {
+      throw err;
+    }
+  });
+}
+
 module.exports.new = newProject;
+module.exports.init = init;

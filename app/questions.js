@@ -1,4 +1,4 @@
-module.exports.replace = [{
+module.exports.replaceProject = [{
   type: 'confirm',
   name: 'replace',
   message: 'You alredy have a project with this name. Replace project?',

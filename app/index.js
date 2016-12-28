@@ -10,10 +10,10 @@ const spawn = childProcess.spawn;
 const exec = childProcess.exec;
 
 function willReplacePath() {
-  return inquirer.prompt(questions.replace);
+  return inquirer.prompt(questions.replaceProject);
 }
 
-function createPath(name) {
+function createProjectPath(name) {
   return {
     mkdir: spawn('mkdir', [name]),
     touch: spawn('touch', [`${name}/index.html`]),
@@ -30,10 +30,16 @@ function newProject(name) {
     fs.exists(name, exists => {
       if (exists) {
         // TODO: improve tests for this.
-        return replace().then(res => res.replace ? resolve(createPath(name + 1)) : reject(Error(`Couldn't replace the path`)));
+        return replace().then(res => {
+          if (res.replace) {
+            return resolve(createProjectPath(name))
+          }
+
+          return reject(Error(`Couldn't replace the prjoect path`))
+        });
       }
 
-      return resolve(createPath(name));
+      return resolve(createProjectPath(name));
     });
   });
 }

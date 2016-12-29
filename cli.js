@@ -14,18 +14,21 @@ project
   .parse(process.argv);
 
 if (project.new) {
-  app.checkNameIsUnique(project.new)
+  const name = project.new;
+
+  app
+    .checkNameIsUnique(name)
     .then(isUnique => {
       if (isUnique) {
-        app.new(project.new);
+        app.new(name);
         process.exit();
       }
 
-      return askWillReplacePath();
+      return askWillReplaceProject();
     })
     .then(answer => {
       if (answer.replace) {
-        return app.new(project.new);
+        return app.new(name);
       }
 
       throw new Error(`Couldn't create the project path. Please, try again.`);
@@ -39,6 +42,6 @@ if (project.init) {
     .then(answers => app.init(answers));
 }
 
-function askWillReplacePath() {
+function askWillReplaceProject() {
   return inquirer.prompt(questions.replaceProject);
 }

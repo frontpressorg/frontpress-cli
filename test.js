@@ -28,6 +28,14 @@ test('generate the frontpress.json', async t => {
   t.is(dataRead.name, objectTest.name, '`dataRead.name` and `objectTest.name` are the same');
 });
 
+test('check unique projects', async t => {
+  const nameUnique = 'project';
+  const nameExisting = 'test';
+
+  t.is(true, await fn.checkNameIsUnique(nameUnique));
+  t.is(false, await fn.checkNameIsUnique(nameExisting));
+});
+
 function pReadFileByName(fileName) {
   return new Promise((resolve, reject) => {
     fs.readFile(fileName, 'utf8', (err, data) => {
